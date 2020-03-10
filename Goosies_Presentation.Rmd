@@ -1,5 +1,5 @@
 ---
-title: "Goosies: A Goose Journey"
+title: "Mapping Goosies: A Goose Journey"
 author: "A. Mott & M. Kramer"
 date: "Winter 2020"
 logo: SNGO.jpg
@@ -7,6 +7,7 @@ output: ioslides_presentation
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library("jpeg")
 ```
 
 ## Packages Used
@@ -25,13 +26,47 @@ library("shinydashboard")
 snow <- read_csv("Data/SNGO_Colville_180965.csv")
 ```
 
+## Rocket Netting
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HPDa-YQHKRY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Mapping | Setting Parameters
 
-```{r}
+## Molt Drive
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wqev8JY7Amk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Goose Capture
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YrgeZwXEb5w" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Setting Parameters
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+snow %>% 
+  select(Latitude, Longitude) %>% 
+  summary()
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 lat <- c(39.20, 70.49)
 long <- c(-160.6, -110.2)
 bbox <- make_bbox(long, lat, f = 0.05)
 ```
 
-## Slide with Plot
+## Getting a Base Map
+
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+b <- get_map(bbox, maptype = "terrain", source = "stamen")
+ggmap(b)
+```
+
+
+## Adding Goose Location Points
+- Solar powered transmitters collect GPS locations of the goose's movement
+- The points are uploaded to a website -> KML
+```{r}
+ggmap(b) + 
+  geom_point(data = snow, aes(Longitude, Latitude), color = "maroon", size = 1, alpha = 0.7) +
+           labs(x = "Longitude", y = "Latitude", title = "Snow Goose '180965' Locations")+
+  theme(plot.title = element_text(size = rel(1.25), hjust = 0.5))
+```
+
+
+
