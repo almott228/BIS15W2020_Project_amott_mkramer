@@ -68,4 +68,36 @@ ggmap(b) +
   theme(plot.title = element_text(size = rel(1.25), hjust = 0.5))
 ```
 
-## 
+
+```{r include=FALSE}
+goose <- readr::read_csv("Data/Goose_data_2019.csv")
+```
+
+## Exploring Goose Measurement Dataset
+```{r}
+dim(goose)
+```
+```{r}
+names(goose)
+```
+
+##Checking for NAs
+- NAs in Dataset appeared to be correctly registered
+```{r}
+naniar::miss_var_summary(goose)
+```
+
+##Tidying Dataset: Part 1
+- Replacing Spaces with Underscore, and # with "Number"
+```{r}
+names(goose)<-gsub("\\s","_",names(goose))#Put_in names
+names(goose)<-gsub("#","Number",names(goose))
+```
+- Mutated Columns to be factors/numerics using mutate_at()
+
+
+##Tidying Dataset: Part 2
+
+
+
+
