@@ -97,6 +97,12 @@ names(goose)<-gsub("#","Number",names(goose))
 
 
 ##Tidying Dataset: Part 2
+- Renamed Columns to include measurements
+  -Ex. rename(Wing_Chord_mm = Wing_Chord)
+- Made Measurement a Variable
+- pivot_longer(Wing_Chord_mm:Bill_Height_mm,
+               names_to = "Measure",
+               values_to = "Value")
 
 
 
