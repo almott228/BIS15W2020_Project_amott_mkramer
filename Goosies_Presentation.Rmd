@@ -1,5 +1,5 @@
 ---
-title: "Mapping Goosies: A Goose Journey"
+title: "Mapping Goosies: <br> A Goose Journey"
 author: "A. Mott & M. Kramer"
 date: "Winter 2020"
 logo: SNGO.jpg
@@ -81,27 +81,27 @@ dim(goose)
 names(goose)
 ```
 
-##Checking for NAs
+## Checking for NAs
 - NAs in Dataset appeared to be correctly registered
 ```{r}
 naniar::miss_var_summary(goose)
 ```
 
-##Tidying Dataset: Part 1
+## Tidying Dataset: Part 1
 - Replacing Spaces with Underscore, and # with "Number"
-```{r}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 names(goose)<-gsub("\\s","_",names(goose))#Put_in names
 names(goose)<-gsub("#","Number",names(goose))
 ```
 - Mutated Columns to be factors/numerics using mutate_at()
 
 
-##Tidying Dataset: Part 2
+## Tidying Dataset: Part 2
 - Renamed Columns to include measurements
   -Ex. rename(Wing_Chord_mm = Wing_Chord)
 - Made Measurement a Variable
-- pivot_longer(Wing_Chord_mm:Bill_Height_mm,
-               names_to = "Measure",
+- pivot_longer(Wing_Chord_mm:Bill_Height_mm, <br>
+               names_to = "Measure", <br>
                values_to = "Value")
 
 
